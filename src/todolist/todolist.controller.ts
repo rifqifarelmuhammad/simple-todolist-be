@@ -1,5 +1,4 @@
 import { Body, Controller, Get, Post, Delete, Param, Put } from '@nestjs/common';
-import { CustomCookie } from 'src/cookies/customCookie.decorators';
 import { TodoDTO } from './todo.dto';
 import { TodolistService } from './todolist.service';
 
