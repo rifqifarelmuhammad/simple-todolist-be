@@ -16,3 +16,8 @@ model todolist {
   title String
   isFinished Boolean
 }
+
+model avatar {
+  uId String @id()
+  file String
+}

@@ -7,9 +7,10 @@ import { FirebaseService } from './firebase/firebase.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { TodolistModule } from './todolist/todolist.module';
 // import { TodolistModule } from './todolist/todolist.module';
+import { AvatarModule } from './avatar/avatar.module';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), PrismaModule, TodolistModule],
+  imports: [AuthModule, ConfigModule.forRoot(), PrismaModule, TodolistModule, AvatarModule],
   controllers: [AppController],
   providers: [AppService, FirebaseService],
 })

@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { Todolist } from './todo.entity';
-import { where } from 'firebase/firestore';
-import { type } from 'os';
 
 @Injectable()
 export class TodolistService {
