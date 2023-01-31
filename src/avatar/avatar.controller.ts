@@ -1,7 +1,7 @@
 import { Controller, Post, Get, UploadedFile, UseInterceptors, Param, Patch, Res, Delete, Request, Put } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import multer, { diskStorage } from 'multer';
-import { AvatarFilename } from 'src/helper/avatar.filename';
+import { AvatarFilename } from '../helper/avatar.filename';
 import { AvatarDTO } from './avatar.dto';
 import { AvatarService } from './avatar.service';
 
