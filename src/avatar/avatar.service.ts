@@ -13,7 +13,7 @@ export class AvatarService {
     }
 
     async getAvatar(fileName: string, res: any){
-        return res.sendFile(fileName, { root: '.vercel/output/static/avatar' })
+        return res.sendFile(fileName, { root: './images' })
     }
 
     async postAvatar(data: Prisma.avatarCreateInput): Promise<Avatar>{

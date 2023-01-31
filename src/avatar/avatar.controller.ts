@@ -22,7 +22,7 @@ export class AvatarController {
   @Post(':uId')
   @UseInterceptors(FileInterceptor('photo', {
     storage: diskStorage({
-      destination: '.vercel/output/static/avatar',
+      destination: './images',
       filename: AvatarFilename.customFileName,
     }),
   }))
@@ -39,7 +39,7 @@ export class AvatarController {
   @Patch(':uId')
   @UseInterceptors(FileInterceptor('photo', {
     storage: diskStorage({
-      destination: '.vercel/output/static/avatar',
+      destination: './images',
       filename: AvatarFilename.customFileName,
     }),
   }))
