@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { Avatar } from './avatar.entity';
-import { RemoveFile } from 'src/helper/removeFile';
+import { RemoveFile } from '../helper/removeFile';
 
 @Injectable()
 export class AvatarService {
