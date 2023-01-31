@@ -13,7 +13,7 @@ export class AvatarService {
     }
 
     async getAvatar(fileName: string, res: any){
-        return res.sendFile(fileName, { root: 'upload/avatar' })
+        return res.sendFile(fileName, { root: 'temp/upload/avatar' })
     }
 
     async postAvatar(data: Prisma.avatarCreateInput): Promise<Avatar>{
