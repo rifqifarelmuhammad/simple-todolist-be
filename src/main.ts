@@ -5,9 +5,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: [
-      'http://localhost:3000'
+      'http://localhost:3000', 
+      'https://simple-todolist-fe.vercel.app'
     ],
-    methods: ["GET", "POST", "PUT", "PATCH"],
     credentials: true
   });
   await app.listen(8000);
