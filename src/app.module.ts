@@ -11,6 +11,7 @@ import { AvatarModule } from './avatar/avatar.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [AuthModule, 
@@ -23,7 +24,8 @@ import { join } from 'path';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'images')
-    }),],
+    }),
+    CloudinaryModule,],
   controllers: [AppController],
   providers: [AppService, FirebaseService],
 })

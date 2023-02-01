@@ -1,4 +1,4 @@
-import { Controller, Post, Get, UploadedFile, UseInterceptors, Param, Patch, Res, Delete, Request, Put } from '@nestjs/common';
+import { Controller, Post, Get, UploadedFile, UseInterceptors, Param, Patch, Res, Delete, Request, Put, Req } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import multer, { diskStorage } from 'multer';
 import { AvatarFilename } from '../helper/avatar.filename';
@@ -14,20 +14,9 @@ export class AvatarController {
     return this.avatarService.getAllAvatar()
   }
 
-  @Get(':fileName')
-  getAvatar(@Param('fileName') fileName: string, @Res() res){
-    return this.avatarService.getAvatar(fileName, res)
-  }
-
-  @Post(':uId')
-  @UseInterceptors(FileInterceptor('photo', {
-    storage: diskStorage({
-      destination: './images',
-      filename: AvatarFilename.customFileName,
-    }),
-  }))
-  postAvatar(@Param('uId') uId: string, @UploadedFile() file){
-    const ava: AvatarDTO = {'uId': uId, 'file': file.path}
+  @Post()
+  postAvatar(@Request() req){
+    const ava: AvatarDTO = {'uId': req.body["uId"], "file": req.body["public_id"], "url": req.body["url"]}
     return this.avatarService.postAvatar(ava)
   }
 
@@ -37,14 +26,8 @@ export class AvatarController {
   }
 
   @Patch(':uId')
-  @UseInterceptors(FileInterceptor('photo', {
-    storage: diskStorage({
-      destination: './images',
-      filename: AvatarFilename.customFileName,
-    }),
-  }))
-  updateAvatar(@Param('uId') uId: string, @UploadedFile() file){
-    const ava: Partial<AvatarDTO> = {'file': file.path}
+  updateAvatar(@Param('uId') uId: string, @Request() req){
+    const ava: Partial<AvatarDTO> = {'file': req.body["public_id"], "url": req.body["url"]}
     return this.avatarService.updateAvatar(uId, ava)
   }
 }

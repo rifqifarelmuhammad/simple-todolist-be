@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import { Avatar } from './avatar.entity';
-import { RemoveFile } from '../helper/removeFile';
+import { v2 } from 'cloudinary';
 
 @Injectable()
 export class AvatarService {
@@ -12,26 +12,27 @@ export class AvatarService {
         return this.prisma.avatar.findMany()
     }
 
-    async getAvatar(fileName: string, res: any){
-        return res.sendFile(fileName, { root: './images' })
-    }
-
     async postAvatar(data: Prisma.avatarCreateInput): Promise<Avatar>{
         return this.prisma.avatar.create({data})
     }
 
     async deleteAvatar(uId: string){
         const userAvatar = await this.prisma.avatar.findUnique({where: {uId:uId}})
-        
-        await RemoveFile.removeFile(userAvatar.file)
 
+        await v2.uploader.destroy(userAvatar.file, function(error,result) {
+            console.log(result, error) })
+            .then(resp => console.log(resp))
+            .catch(_err=> console.log("Something went wrong, please try again later."));
         return this.prisma.avatar.delete({where: {uId:uId}})
     }
 
     async updateAvatar(uId: string, data: Prisma.todolistUpdateInput): Promise<Avatar>{
         const userAvatar = await this.prisma.avatar.findUnique({where: {uId:uId}})
         
-        await RemoveFile.removeFile(userAvatar.file)
+        await v2.uploader.destroy(userAvatar.file, function(error,result) {
+            console.log(result, error) })
+            .then(resp => console.log(resp))
+            .catch(_err=> console.log("Something went wrong, please try again later."));
         
         return this.prisma.avatar.update({where: {uId:uId}, data})
     }

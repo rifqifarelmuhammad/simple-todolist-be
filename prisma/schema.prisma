@@ -20,4 +20,5 @@ model todolist {
 model avatar {
   uId String @id()
   file String
+  url String
 }

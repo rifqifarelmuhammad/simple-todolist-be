@@ -8,4 +8,7 @@ export class Avatar {
 
     @Column()
     file: string;
+
+    @Column()
+    url: string;
 }
