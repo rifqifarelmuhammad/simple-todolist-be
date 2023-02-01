@@ -16,7 +16,6 @@ export class AvatarController {
 
   @Post()
   postAvatar(@Request() req){
-    console.log(req.header)
     const ava: AvatarDTO = {'uId': req.body["uId"], "file": req.body["public_id"], "url": req.body["url"]}
     return this.avatarService.postAvatar(ava)
   }
