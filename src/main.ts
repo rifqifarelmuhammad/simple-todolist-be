@@ -3,18 +3,11 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
   app.enableCors({
-    origin: [
-      'http://localhost:3000', 
-      'https://simple-todolist-fe.vercel.app'
-    ],
-    credentials: true
+    origin: 'https://simple-todolist-fe.vercel.app',
+    allowedHeaders: '*',
   });
-  app.use((req:any, res:any, next:any) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  })
   await app.listen(8000);
 }
 bootstrap();
