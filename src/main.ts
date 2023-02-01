@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors({
-    origin: 'https://simple-todolist-fe.vercel.app',
+    origin: true,
     allowedHeaders: '*',
     credentials: true,
     methods: '*'
