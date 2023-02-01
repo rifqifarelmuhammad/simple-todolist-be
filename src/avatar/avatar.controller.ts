@@ -22,6 +22,7 @@ export class AvatarController {
 
   @Delete(':uId')
   deleteAvatar(@Param('uId') uId: string){
+    console.log('masuk')
     return this.avatarService.deleteAvatar(uId)
   }
 
